@@ -1,0 +1,53 @@
+#first-div{
+    position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+.centered{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 200;
+  font-size: 40px;
+  font-family:  "Quicksand", Arial, sans-serif;
+}
+img{
+    opacity: 0.8;
+}
+a{
+    color: #2b5250;
+ }
+ a:hover, a:active, a:focus {
+   color: #FFDD00;
+   outline: none;
+   text-decoration: none;
+  }
+  #head{
+    color: skyblue;
+}
+footer{
+  text-align: center;
+  background-color: tomato;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.row{
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+main{
+  margin-bottom: 40px;
+}

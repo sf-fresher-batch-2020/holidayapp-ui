@@ -1,20 +1,44 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('/images/login.jpeg');
+    background-image: url('/images/img_bg_1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-attachment: fixed;
+    margin-bottom: 40px;
+
 
 }
 .page-title{
     text-align: center;
-    font-weight: 600;
-    font-size: larger;
-    font-family: 'Courier New';
-    margin-top: 400px;
-   color: crimson;
-    width: fit-content;
-   margin-left: 600px;
+    font-weight: 200;
+    font-size: 40px;
+    text-align: center;
+    justify-content: center;
+   color:white;
+   font-family: "Quicksand", Arial, sans-serif;
+   
 }
+
+#head{
+    color:transparent;
+}
+a{
+   color: #2b5250;
+}
+a:hover, a:active, a:focus {
+  color: #FFDD00;
+  outline: none;
+  text-decoration: none;
+ }
+ main{
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+}
+body{
+    position: relative;
+    padding-bottom: 40px;
+}
+
