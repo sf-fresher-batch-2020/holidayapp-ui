@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Dumas Beach",
+        "id": "GOA101",
+        "location": "Goa",
+        "rating": 3.5,
+        "eta": 25,
+        "tags": ["Pool", "Fast Food","Hotels"],
+        "img": "/images/tour-1.jpg"
+    }
+]
