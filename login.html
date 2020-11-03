@@ -29,8 +29,10 @@
         Email<input type="email" name="email" id="mail" required autofocus><br>
         password<input type="password" name="password" id="pass" required><br><br>
         <input type="submit" value="login">
+        <button onclick="admin()">LOGIN AS ADMIN</button>
         </form>
         <a href="register.html">DON'T HAVE AN ACCOUNT CREATE HERE.!</a>
+        
     </div>
     </div>
     <div id="overlay-area"></div>
@@ -53,6 +55,9 @@
             {
                 document.querySelector("#login").innerHTML = "invalid";
             }
+    }
+    function admin(){
+        window.location.href="admin.html";
     }
     $("#head").load("_header.html");
 </script>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Login page</title>
+       
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/login.css"/>
+        <link rel="stylesheet" href="/styles/register.css"/>
+    </head>
+    <body>
+        <header id="head">
+            <!--header content-->
+        </header>
+        <div class="wrapper">
+            <div id="page-content">
+                <div id="login"></div>
+        <h1>Admin Login Page</h1>
+        <form name="login">
+            Username<input type="text" name="userid"/>
+            Password<input type="password" name="pswrd"/>
+            <input type="button" onclick="check(this.form)" value="Login"/>
+            
+        </form></div></div>
+        <div id="overlay-area"></div>
+        <script language="javascript">
+            function check(form) { /*function to check userid & password*/
+                /*the following code checkes whether the entered userid and password are matching*/
+                if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd") {
+                    window.location.href="userbookings.html";
+                }
+                else {
+                    alert("Error Password or Username")/*displays error message*/
+                }
+            }
+          
+        </script>
+    </body>
+</html>
