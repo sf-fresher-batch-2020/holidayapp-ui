@@ -23,6 +23,9 @@
   }
   h3{
       text-align: center;
+      color: lightcoral;
+      font-weight: 300 ;
+      font-weight: bold;
   }
     *{
         box-sizing: border-box;
@@ -114,4 +117,7 @@ margin : 0px;
 .package{
     margin-top: -50px;
    
+}
+th{
+    color: #fff;
 }

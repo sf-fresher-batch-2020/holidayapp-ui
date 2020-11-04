@@ -1,0 +1,39 @@
+
+    [
+    {
+    "id":"Jai1",
+    "duration": "one week",
+    "rating": 4.2,
+    "price": 20000,
+    "facilities":[ "with stay","food","pool"]
+},
+{
+    "id":"Jai2",
+    "duration": "two week",
+    "rating": 4.1,
+    "price": 15000,
+    "facilities":[ "without stay"]
+},
+{   
+    "id":"Jai3",
+    "duration": "two week",
+    "rating": 4.1,
+    "price": 15000,
+    "facilities":[ "without stay"]
+},
+{
+    "id":"Jai4",
+    "duration": "two week",
+    "rating": 4.1,
+    "price": 15000,
+    "facilities":[ "without stay"]
+},
+{
+    "id":"Jai5",
+    "duration": "20 days",
+    "rating": 4.2,
+    "price": 35000,
+    "facilities":[ "with stay","food","pool"]
+}
+]
+
