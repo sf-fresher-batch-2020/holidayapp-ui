@@ -20,98 +20,35 @@
 </head>
 <body>
     <header id="head"></header>
-    <main class="tours">
-         <div id="first-div">
-             <img src="/images/img_bg_2.jpg" alt="Destination travel" width="100%" height="600px">
-             <div class="centered">Choose your Destination</div>
-         </div>
-         <div id="second-div">
-            <div class="row">
-                <div class="col-md-3" style="min-width: 18rem;" >
-                    <div class="card h-100">
-                  <img src="/images/tour-1.jpg" class="card-img-top" alt="Dumas Beach" style="height: 250px; ">
-                  <div class="card-body">
-                    <h5 class="card-title">Dumas Beach</h5>
-                    <p class="card-text">Located along the Arabian Sea, Dumas Beach is considered one of the most haunted places in Gujarat. The beach is renowned for two things, one for its black sand and other for being haunted! </p>
-                    <a href="gujarat.html"class="btn btn-primary">Know More</a>&nbsp;&nbsp;
-                    
-                  </div></div>
-                </div>
-      
-                <div class="col-md-3" style=" min-width: 18rem;">
-                    <div class="card h-100">
-                  <img src="/images/tour-2.jpg" class="card-img-top" alt="" style="height: 250px; ">
-                  <div class="card-body">
-                    <h5 class="card-title">Agonda Beach</h5>
-                    <p class="card-text">Agonda Beach is a public beach located in Agonda village in Goa, India, about 9.2 kilometres (5.7 mi) north of Palolem Beach in South Goa district, and about an hour from Margao.
-                       During the month of September, the beach serves as a nesting ground for olive ridley sea turtles.</p>
-                       <a href="Goa.html" class="btn btn-primary">Know More</a> &nbsp;&nbsp;
-                     
-                  </div></div>
-                </div>
-
-                <div class="col-md-3" style="min-width: 18rem;">
-                    <div class="card h-100">
-                  <img src="/images/tour-3.jpg" class="card-img-top" alt="" style="height: 250px;">
-                  <div class="card-body">
-                    <h5 class="card-title">Gokarna Beach</h5>
-                    <p class="card-text">Gokarna is about 238 km north of Mangalore, 483 km from Bengaluru and about 59 km from Karwar. It is between the Gangavali and Agnashini rivers along the Karwar coast by the Arabian Sea. It is 200 km north from the college towns of Suratkal and Manipal.</p>
-                    <a href="mangalore.html" class="btn btn-primary">Know More</a>
-                  </div></div>
-                </div>
-                
-                  <div class="col-md-3" style=" min-width: 18rem;">
-                    <div class="card h-100">
-                      <img src="/images/tour-7.jpg" class="card-img-top" alt="..."style="height: 250px;">
-                      <div class="card-body">
-                        <h5 class="card-title">Lotus Temple</h5>
-                        <p class="card-text">East of Nehru place, this temple is built in the shape of a lotus flower and is the last of seven Major Bahai's temples built around the world. Completed in1986 it is set among the lush green landscaped gardens.
-                          The structure is made up of pure white marble The architect Furiburz Sabha chose the lotus as the symbol common to Hinduism, Buddhism,jainiam and islam</p>
-                        <a href="delhi.html" class="btn btn-primary">Know More</a>
-                      </div></div>
-                    </div>
-                     
-             </div>
-      
-              <div class="row" style="margin-top: 30px;">
-                  <div class="col-md-3" style="width: auto;">
-                    <div class="card h-100">
-                    <img src="/images/tour-4.jpg" class="card-img-top" alt="..." style="height: 250px;">
-                    <div class="card-body">
-                      <h5 class="card-title">Hawa-Mahal</h5>
-                      <p class="card-text">Situated at Badi Choupad, Pink City of Jaipur, Hawa Mahal was built in 1799. It has 953 windows on the outside walls. 
-                          The honeycomb shaped and beautifully carved windows allow breeze to blow through the palace and makes it a perfect summer palace. It was built as an extension to the City Palace nearby. See below for more information about Hawa Mahal.</p>
-                      <a href="jaipur.html" class="btn btn-primary">Know More</a>
-                    </div></div>
-                  </div>
+    <div id="first-div">
+      <img src="/images/img_bg_2.jpg" alt="Destination travel" width="100%" height="600px">
+      <div class="centered">Choose your Destination</div>
+  </div>
+  <div id="second-div">
+    <div class="row" id="destination-cards">
+       </div></div></body>
+   <script>
+      let destinationData = JSON.parse(localStorage.getItem("DESTINATIONS")) || [];
+      console.log(destinationData);
+      let content= "";
+      for(let obj of destinationData){
+        content+=`
+        <div class="col-md-3" style="min-width: 18rem;" >
+                          <div class="card h-100">
+                        <img src="/images/${obj.imageUrl}" class="card-img-top" style="height: 250px; ">
+                        <div class="card-body">
+                          <h5 class="card-title">${obj.title}</h5>
+                          <p class="card-text">${obj.description}</p>
+                          <a href="viewdestination.html?id=${obj.id}"class="btn btn-primary">Know More</a>&nbsp;&nbsp;
+                          
+                        </div></div>
+                      </div>
         
-                  <div class="col-md-3" style="width: auto;">
-                    <div class="card h-100">
-                    <img src="/images/tour-5.jpg" class="card-img-top" alt="..." style="height: 250px;">
-                    <div class="card-body">
-                      <h5 class="card-title">Brihadeeshwara temple</h5>
-                      <p class="card-text">Brihadishvara Temple, also called Rajarajesvaram or Peruvudaiyār Kōvil, is a Hindu temple dedicated to Shiva located in South bank of Kaveri river in Thanjavur, Tamil Nadu, India.
-                        It is one of the largest South Indian temples and an exemplary example of a fully realized Dravidian architecture.
-                      </p>
-                      <a href="Tanjavur.html" class="btn btn-primary">Know More</a>
-                    </div></div>
-                  </div>
-        
-        
-                  <div class="col-md-3" style="width: auto;">
-                    <div class="card h-100">
-                    <img src="/images/tour-6.jpg" class="card-img-top" alt="..." style="height: 250px;">
-                    <div class="card-body">
-                      <h5 class="card-title">Monuments</h5>
-                      <p class="card-text">Situated at the banks of Yamuna river, Delhi, the capital of India, is a vibrant modern city with an ancient and eventful history. The city with its multi-faceted culture can aptly said to be a microcosm of the whole nation. Visit to the city offers a unique two-in-one experience as New Delhi with its wide roads and high rise buildings gives a feel of being in a contemporary city whereas a stroll down the streets of Old Delhi </p>
-                      <a href="monuments.html" class="btn btn-primary">Know More</a>
-                    </div></div>
-                  </div>
-                </div>
-                
-                    
-         </div>
-    </main>
+        `;
+      }
+      console.log(content);
+      document.querySelector("#destination-cards").innerHTML = content;
+    </script>
    <script>
       function clicked(ids)
       {

@@ -1,10 +1,15 @@
-class AdminService{
-    register = function(userObj){
-       var usersTemp = JSON.parse(localStorage.getItem("USERS"));
-       var users= usersTemp ? usersTemp:[];
-       users.push(userObj);
-       localStorage.setItem("USERS",JSON.stringify(users));
-       let result="success";
-       return result;
-        }
+function admin(){
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+if ( email == "admin@gmail.com" && password == "admin#123"){
+alert ("Login successfully");
+window.location.href="userbookings.html"; // Redirecting to other page.
+localStorage.setItem("ADMIN_LOGGED_IN",JSON.stringify(obj));
+localStorage.getItem("ADMIN_LOGGED_IN");
+return false;
 }
+else{
+    alert("invalid");
+}
+}
+

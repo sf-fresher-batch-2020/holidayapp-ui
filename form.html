@@ -20,34 +20,45 @@
    
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-      <link rel="stylesheeet" href="/styles/style.css">
-     <style>
-       body{
-         background-image: url("/images/login.jpeg");
-       }
-     </style>
-     
+      <link rel="stylesheeet" href="/styles/form.css">
+     <link rel="stylesheet" href="/styles/login.css">
+     <script src="/services/confirm.js"></script>
       
 </head>
 <body>
     <header id="head"></header>
     <main class="container-fluid">
-        <div id="page-content"></div>
-   
+      <div class="wrapper">
+        <div id="page-content">
+            <h1>confirm Form</h1>
+            <form>
+            <form action="" method="POST">
+                <label>NAME</label><input type="text" name="username" id="username" placeholder="Enter username" required autofocus><br>
+                <label>EMAIL-ID</label><input type="email" name="email" id="email" placeholder="Enter user email" required ><br>
+                
+                    Date of Journey: <input type="date" style="width: 200px;" class="datepicker" id="dataStart" size="20" name="dataStart" />
+                     
+            </form>
+            </form>
+           
+        </div>
+    </div>
+    <div id="overlay-area"></div>
+        
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <table class="table table-bordered table-striped" id="planner_table1">
+                <table class="table table-bordered table-striped table-dark" id="planner_table1">
                     <tbody id="data">
-                      <thead class="thead-dark">
+                      
                         <tr class="bg-info">
-                          <th >Duration</th>
-                          <th>Ratings</th>
-                          <th >Facilities</th>
-                          <th >Price</th>
-                         
+                          
+              <th>Package Id</th>
+              <th >Duration(in weeks)</th>
+              <th >Facilities</th>
+              <th >Price</th>
+               <th>Conform</th>
                         </tr>
-                      </thead>
                     </tbody>
                   </table>
             </div>
@@ -56,24 +67,56 @@
     </div>
 </main>
     <script>
-        $(document).ready(function(){
-            var ids=window.location.search.substring(1).split("%20")[1];
-            $.getJSON("/services/jaipur.json",function(data){
-          var planner_table='';
-          $.each(data,function(key,value){
-            if(ids===value.id){
-          planner_table+='<tr>';
-            planner_table+='<td>'+value.duration+'</td>';
-            planner_table+='<td>'+value.rating+'</td>';
-            planner_table+='<td>'+value.facilities+'</td>';
-            planner_table+='<td>'+value.price+'</td>';
-            planner_table+='</tr>';
-          }
-          });
-          $('#planner_table1').append(planner_table);
+     window.onload = function () {
+      let urlString = window.location.search.substring(1);
           
-        });
-        })
+            let paramString = urlString.split('%20')[0]; 
+            let phrase1=paramString.split("=")[1];
+            let packid=phrase1;
+            let paramString2=urlString.split('%20')[1];
+            let phrase2=paramString2.split("=")[1];
+            let packduration=phrase2;
+            let paramString3=urlString.split('%20')[2];
+            let phrase3=paramString3.split("=")[1];
+            let packfacility=phrase3;
+            let paramString4=urlString.split('%20')[3];
+            let phrase4=paramString4.split("=")[1];
+            let packrate=phrase4;
+            console.log(packid,packduration,packfacility,packrate);
+            var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td><button onclick="confirm(\'' +packid+ '\',\'' +packduration+ ' \',\''+packfacility+'\',\''+packrate+ '\')">BookNow</button></td></tr>';
+            $("table tbody").append(new_pack);
+            }
+        
+            
+        function confirm(id,duration,facilities,price,dataStart){
+          event.preventDefault();
+          var n;
+            var email=document.getElementById("email").value;
+            var name=document.getElementById("username").value;
+            var startdate=document.getElementById("dataStart").value;
+            var someDate = new Date(startdate);
+            someDate.setDate(someDate.getDate() + (duration*7));
+            var enddate = someDate.toISOString().substr(0,10);
+            console.log(enddate);
+            
+
+          var userObj={"email":email,"username":name ,"dataStart":startdate,"dataEnd":enddate};
+        console.log(userObj);
+        var bookingserviceObj= new BookingService();
+      let result= bookingserviceObj.confirm(userObj);
+      if(result=="success"){
+        console.log(id,duration,facilities,price,dataStart);
+        var index= document.getElementById("planner_table1").rows.item(1).innerHTML;
+        console.log(index);
+        window.location.href="booking.html?id="+id+"%20duration="+duration+"facilities="+facilities+"%20price="+price+"%20name="+name+"%20dataStart="+startdate+"%20dateEnd="+enddate;
+
+            alert("Success!!your trip is confirmed from " +startdate+" to "+enddate);
+            
+        }
+        else{
+          alert("failed");
+        }
+        }
         $("#head").load("_header.html");
       
     </script>

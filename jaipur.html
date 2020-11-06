@@ -23,6 +23,7 @@
       <!-- JavaScript -->
       <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
       <link rel="stylesheet" href="/styles/slides.css">
+      <script src="/services/packagelist.js"></script>
       
 </head>
 
@@ -63,17 +64,20 @@
   </div>
   
    <h3>Package Details</h3>
-    <div class="page-content">
+    <div class="container">
       <div id="table-responsive" >
     
-      <table class="table table-bordered table-striped" id="planner_table">
+      <table class="table table-striped" id="planner_table">
         <tbody id="data">
           <thead class="thead-dark">
             <tr class="bg-info">
-              <th >Duration</th>
+              <th>S.NO</th>
+              <th>Package Id</th>
+              <th >Duration(in Weeks)</th>
               <th>Ratings</th>
               <th >Facilities</th>
               <th >Price</th>
+              
               <th>Book Now</th>
             </tr>
           </thead>
@@ -144,38 +148,46 @@
 </div>
     </div>  
   <script>
-      $(document).ready(function(){
-        $.getJSON("/services/jaipur.json",function(data){
-          var planner_table='';
-          $.each(data,function(key,value){
-            
-          planner_table+='<tr>';
-            planner_table+='<td>'+value.duration+'</td>';
-            planner_table+='<td>'+value.rating+'</td>';
-            planner_table+='<td>'+value.facilities+'</td>';
-            planner_table+='<td>'+value.price+'</td>';
-            planner_table+='<td>'+'<button type="submit" class="btn btn-success" id="button" onclick="getId(\' '+value.id+' \')">Book this package </button>'+'</td>';
-            planner_table+='</tr>';
-          });
-          $('#planner_table').append(planner_table);
-        });
-      });
-      function getId(id){
-       console.log(id);
-       window.location.href="form.html?id="+id;
-      }
-
-      fetch("/services/jaipur.json").then(
-       res=>{
-        res.json().then(
-          data=>{
-            console.log(data);
+        $("#head").load("_header.html");
+          function displaypackage(){
+       
+        let listTemp=JSON.parse(localStorage.getItem("ADDPACKAGE"));
+        let packagelist=listTemp ? listTemp:[];
+        console.log(packagelist);
+        let sno=0;
+        if(packagelist.length>0){
+          for(let obj of packagelist){
+var new_pack='<tr><td>'+ ++sno + '</td><td>' +obj.packid+ '</td><td>' + obj.duration + '</td><td>' + obj.rating + '</td><td>' + obj.facilities + '</td><td>' + obj.price + '</td><td><button onclick="book(\'' +obj.packid+ '\',\'' +obj.duration+ ' \',\'' +obj.facilities+ '\',\'' +obj.price+ '\')">BookNow</button></td></tr>';
+            $("table tbody").append(new_pack);
+          }
+          
+        }
+        else{
+            alert("No packages provide");
+            $("table").empty();
             
           }
-      )}
-      )
-       $("#head").load("_header.html");
+      }
+      function book(id,duration,facilities,price){
+        
+        console.log(id,duration,facilities,price);
+        var index= document.getElementById("planner_table").rows.item(1).innerHTML;
+        console.log(index);
+    window.location.href="form.html?id="+id+"%20duration="+duration+"facilities="+facilities+"%20price="+price;
+      } 
+      function deleteRecord(id){
+        console.log("Deleting package");
+        console.log(id);
+        let list=new PackageListService().list();
+        let index=list.findIndex(obj=>obj.packid == id);
+        list.splice(index,1);
+        localStorage.setItem("ADDPACKAGE",JSON.stringify(list));
+        window.location.reload();
+      }
       
+      
+      displaypackage();
+
   </script>
   <footer></footer>
 </body>

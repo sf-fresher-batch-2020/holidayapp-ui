@@ -11,7 +11,7 @@ body{
 .wrapper{
     width: 400px;
     height: auto;
-    color: #000;
+    color: white;
     top: 50%;
     left: 50%;
     padding: 60px 30px;
@@ -44,6 +44,10 @@ h1{
     opacity:1 ;
      color: yellow;
 
+}
+.wrapper input[type=radio]{
+    margin: 0;
+    text-align: center;
 }
 .wrapper input[type=submit]{
     border: none;

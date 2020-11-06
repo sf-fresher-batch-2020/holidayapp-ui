@@ -8,33 +8,22 @@
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/styles/login.css"/>
         <link rel="stylesheet" href="/styles/register.css"/>
+        <script src="/services/admin.js"></script>
     </head>
     <body>
         <header id="head">
             <!--header content-->
         </header>
         <div class="wrapper">
-            <div id="page-content">
-                <div id="login"></div>
-        <h1>Admin Login Page</h1>
-        <form name="login">
-            Username<input type="text" name="userid"/>
-            Password<input type="password" name="pswrd"/>
-            <input type="button" onclick="check(this.form)" value="Login"/>
-            
-        </form></div></div>
-        <div id="overlay-area"></div>
-        <script language="javascript">
-            function check(form) { /*function to check userid & password*/
-                /*the following code checkes whether the entered userid and password are matching*/
-                if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd") {
-                    window.location.href="userbookings.html";
-                }
-                else {
-                    alert("Error Password or Username")/*displays error message*/
-                }
-            }
+            <h3>Admin Login</h3>
           
-        </script>
+        <form>
+            Username<input type="email" name="email" id="email"/>
+            Password<input type="password" name="password" id="password"/>
+            <input type="button" id="submit"onclick="admin()" value="Login"/>
+            
+        </form></div>
+        <div id="overlay-area"></div>
+        
     </body>
 </html>
