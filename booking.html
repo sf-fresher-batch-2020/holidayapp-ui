@@ -33,6 +33,9 @@
                           <th >Duration</th>
                          <th >Facilities</th>
                           <th >Price</th>
+                          <th >Start Date</th>
+                          <th >End Date</th>]
+                          <th>Cancel Package</th>
                           </tr>
                       
                     </tbody>
@@ -67,12 +70,17 @@
             let phrase7=paramString7.split("=")[1];
             let enddate=phrase7;
             document.getElementById("result").innerHTML="Welcome "+""+CustomerName+", Here Are Your Bookings";
-            document.getElementById("journey").innerHTML="Your Trip is From "+""+Startdate+""+" to "+enddate;
+          
             console.log(packid,packduration,packfacility,packrate,CustomerName,Startdate,enddate);
-            var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td></tr>';
+            var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td>'+Startdate+'</td><td>'+enddate+'</td><td><button onclick="cancelrecord()">cancel</button></td></tr>';
             $("table tbody").append(new_pack);
             }
-            
+            //cancel record
+            function cancelrecord() { 
+            $("#table").remove(); 
+            $("#planner_table1").text
+                ("Your Booking is Cancelled"); 
+        } 
       
         $("#head").load("_header.html");
     </script>

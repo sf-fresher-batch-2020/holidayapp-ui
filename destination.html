@@ -16,7 +16,6 @@
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/styles/destination.css"></link>
         <link rel="stylesheet" href="/styles/footer.css"></link>
-        
 </head>
 <body>
     <header id="head"></header>
@@ -26,12 +25,17 @@
   </div>
   <div id="second-div">
     <div class="row" id="destination-cards">
-       </div></div></body>
+      <div class="card h-100">
+        <img src="" class="card-img-top" style="height: 250px; ">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text"></p></div></div></div>
+        </div></div></body>
    <script>
-      let destinationData = JSON.parse(localStorage.getItem("DESTINATIONS")) || [];
-      console.log(destinationData);
+      let destinationsData = JSON.parse(localStorage.getItem("DESTINATIONS")) || [];
+      console.log(destinationsData);
       let content= "";
-      for(let obj of destinationData){
+      for(let obj of destinationsData){
         content+=`
         <div class="col-md-3" style="min-width: 18rem;" >
                           <div class="card h-100">
@@ -48,14 +52,11 @@
       }
       console.log(content);
       document.querySelector("#destination-cards").innerHTML = content;
-    </script>
+      
+      
+          </script>
    <script>
-      function clicked(ids)
-      {
-        event.preventDefault();
-        localStorage.setItem("destination",ids);
-        window.location.href="gujarat.html"
-      }
+     
 
         $("#head").load("_header.html");
    </script>

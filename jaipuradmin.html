@@ -78,7 +78,7 @@
               <th >Facilities</th>
               <th >Price</th>
               <th>Delete</th>
-            
+              <th>Update</th>
             </tr>
           </thead>
         </tbody>
@@ -165,7 +165,7 @@
         let sno=0;
         if(packagelist.length>0){
           for(let obj of packagelist){
-var new_pack="<tr><td>"+ ++sno + "</td><td>" +obj.packid+ "</td><td>" + obj.duration + "</td><td>" + obj.rating + "</td><td>" + obj.facilities + "</td><td>" + obj.price + "</td><td><button onclick='deleteRecord(" +this.packid+ ")'>Delete</button></td></tr>"
+var new_pack="<tr><td>"+ ++sno + "</td><td>" +obj.packid+ "</td><td>" + obj.duration + "</td><td>" + obj.rating + "</td><td>" + obj.facilities + "</td><td>" + obj.price + "</td><td><button onclick='deleteRecord(" +this.packid+ ")'>Delete</button></td><td><button onclick='updaterecord(" +this.packid+ ")'>Update</button></td></tr>"
             $("table tbody").append(new_pack);
           }
           
@@ -184,6 +184,13 @@ var new_pack="<tr><td>"+ ++sno + "</td><td>" +obj.packid+ "</td><td>" + obj.dura
         list.splice(index,1);
         localStorage.setItem("ADDPACKAGE",JSON.stringify(list));
         window.location.reload();
+      }
+      function updaterecord(id){
+      console.log(id);
+      console.log("updating package");
+      // var rIndex,table=document.getElementById("table");
+      
+
       }
       
       displaypackage();
