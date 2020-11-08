@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
-
+        <script src="/services/packagelist.js"></script>
   
  <script src="/services/addpackage.js"></script>
 </head>
@@ -36,21 +36,43 @@
     <label>Facilities</label><select id="category" name="facility">
         <option value="">--PLEASE SELECT --</option>
                     <option value="gym">Gym</option>
-                    <option value="pool">food</option>
-                    <option value="ac"> Swimming Pool</option>
-                    <option value="hotel">Parking</option>
-                    <option value="park">Hotel</option>
+                    <option value="pool">Pool</option>
+                    <option value="food">Food</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="park">Park</option> 
     </select>
     
        <br>
         <button onclick="addpackage()">Add Package</button><br>
         <input type="reset" value="Reset"><br>
-
-        <a href="jaipuradmin.html" style="text-decoration: underline;">view packages</a>
+        <button onclick="updaterow(document.getElementById('packid').value,document.getElementById('duration').value,document.getElementById('rate').value,document.getElementById('price').value,document.getElementById('category').value);">Edit Row</button>
+      
       </form>
       
         </div>
     </div>
+    </div>
+  </div>
+  <h3>Package Details</h3>
+  <div class="container">
+    <div id="table-responsive" >
+  
+    <table class="table table-striped" id="planner_table">
+      <tbody id="data">
+        <thead class="thead-dark">
+          <tr class="bg-info">
+           
+            <th>Package Id</th>
+            <th >Duration(in weeks)</th>
+            <th>Ratings</th>
+            <th >Facilities</th>
+            <th >Price</th>
+            <th>Delete</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+      </tbody>
+    </table>
     </div>
   </div>
   
@@ -72,16 +94,72 @@
       var addpackageservice= new AddpackageService();
       let result= addpackageservice.addpackage(packobj);
       if (result=="success"){
-       alert("Package Added");
-       
+       alert("Package added and Updated");
+       window.location.reload();
       }
       else{
           alert("Package cannot be added");
       }
        
        }
+
+       function displaypackage(){
+        let listTemp=JSON.parse(localStorage.getItem("ADDPACKAGE"));
+        let packagelist=listTemp ? listTemp:[];
+        console.log(packagelist);
+       
+        if(packagelist.length>0){
+          for(let obj of packagelist){
+var new_pack="<tr><td>" +obj.packid+ "</td><td>" + obj.duration + "</td><td>" + obj.rating + "</td><td>" + obj.facilities + "</td><td>" + obj.price + "</td><td><button onclick='deleteRecord(\""+obj.packid+"\")'>Delete</button></td><td><button onclick='updaterecord(\""+obj.packid+"\")'>Update</button></td></tr>"
+            $("table tbody").append(new_pack);
+          }
+          
+        }
+        else{
+            alert("No packages provide");
+            $("table").empty();
+            
+          }
+      }
+      function deleteRecord(id){
+        console.log("Deleting package");
+        console.log(id);
+        let list=new PackageListService().list();
+        let index=list.findIndex(obj=>obj.packid == id);
+        list.splice(index,1);
+        localStorage.setItem("ADDPACKAGE",JSON.stringify(list));
+        window.location.reload();
+      }
+      function updaterecord(id){
+                 var table=document.getElementById("planner_table"),rIndex;
+      for(var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].onclick = function()
+                {
+                    rIndex = this.rowIndex;
+                    console.log(rIndex);
+
+                    document.getElementById("packid").value=this.cells[0].innerHTML;
+                    document.getElementById("duration").value=this.cells[1].innerHTML;
+                    document.getElementById("rate").value=this.cells[2].innerHTML;
+                    document.getElementById("category").value=this.cells[3].innerHTML;
+                    document.getElementById("price").value=this.cells[4].innerHTML;
+               
+                }
+              }
+            }
+              function updaterow(id,duration,rate,price,category){
+                  deleteRecord(id);
+                  addpackage();
+              }
+
+     
+      
+      displaypackage();
+
        
 </script>
 </body>
+
 
 </html>

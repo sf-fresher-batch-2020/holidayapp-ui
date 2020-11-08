@@ -321,7 +321,12 @@ var new_pack='<tr><td>'+ ++sno + '</td><td>' +obj.packid+ '</td><td>' + obj.dura
         window.location.reload();
       }
       
-      
+      function updaterow(id,duration,rate,price,category){
+                  deleteRecord(id);
+                  addpackage();
+              }
+
+     
       displaypackage();
       
   </script>
