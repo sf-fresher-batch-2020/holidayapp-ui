@@ -38,23 +38,23 @@
     <script>
         function register(){
             event.preventDefault();
-            var email=document.getElementById("email").value;
-            var name=document.getElementById("username").value;
-            var password=document.getElementById("password").value;
-           
-        
-        var userObj={"email":email,"username":name,"password":password };
-        console.log(userObj);
-        var registerserviceObj= new RegisterService();
-      let result= registerserviceObj.register(userObj);
-        if(result=="success"){
-            alert("success");
-            window.location.href="login.html"; 
-        }
-        else{
-          alert("failed");
-        }
-    }
+            var userData={
+                email: document.getElementById("email").value,
+             name:document.getElementById("username").value,
+             password: document.getElementById("password").value
+                
+            };
+            var usersr=JSON.parse(localStorage.getItem("USERS")) || [];
+            if(!usersr.some(user=>user.email===userData.email)){
+                usersr.push(userData);
+                localStorage.setItem("USERS",JSON.stringify(usersr));
+                  location.reload();
+                  console.log(userData);
+            }
+            else{
+                alert("user already exists try registering with different credentials");
+            }
+    } 
     $("#head").load("_header.html");
     </script>
 </body>
