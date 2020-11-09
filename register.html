@@ -48,11 +48,14 @@
             if(!usersr.some(user=>user.email===userData.email)){
                 usersr.push(userData);
                 localStorage.setItem("USERS",JSON.stringify(usersr));
-                  location.reload();
+                   location.reload();
                   console.log(userData);
+                  alert("continue login ");
+                  
             }
             else{
                 alert("user already exists try registering with different credentials");
+
             }
     } 
     $("#head").load("_header.html");
