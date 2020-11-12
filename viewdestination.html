@@ -257,8 +257,8 @@ In 2016 it was ranked on TripAdvisor's "Travelers Choice" as fourth in Asia by T
             let paramString = urlString.split('?')[0]; 
             let phrase1=paramString.split("=")[1];
             let placeSelected=phrase1;
-            var theDiv = document.getElementById(placeSelected);
-            theDiv.style.display = "block";
+            var theDiv = document.getElementById(placeSelected).style.display="block";
+            
      }      
             
         var slideIndex = [1,1,1,1];
