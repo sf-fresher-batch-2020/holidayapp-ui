@@ -19,9 +19,9 @@
       <!--slider-->
    
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  
       <!-- JavaScript -->
-      <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+      
       <link rel="stylesheet" href="/styles/slides.css">
       <script src="/services/packagelist.js"></script>
       <style>
@@ -257,8 +257,8 @@ In 2016 it was ranked on TripAdvisor's "Travelers Choice" as fourth in Asia by T
             let paramString = urlString.split('?')[0]; 
             let phrase1=paramString.split("=")[1];
             let placeSelected=phrase1;
-            var theDiv = document.getElementById(placeSelected).style.display="block";
-            
+            var theDiv = document.getElementById(placeSelected);
+            theDiv.style.display = "block";
      }      
             
         var slideIndex = [1,1,1,1];
@@ -286,7 +286,7 @@ In 2016 it was ranked on TripAdvisor's "Travelers Choice" as fourth in Asia by T
         $("#head").load("_header.html");
         //display packages
           function displaypackage(){
-        let listTemp=JSON.parse(localStorage.getItem("ADDPACKAGE"));
+        let listTemp=JSON.parse(localStorage.getItem("ADDPACKAGE"));//fetch
         let packagelist=listTemp ? listTemp:[];
         console.log(packagelist);
         let sno=0;

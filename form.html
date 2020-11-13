@@ -82,8 +82,20 @@
             let paramString4=urlString.split('%20')[3];
             let phrase4=paramString4.split("=")[1];
             let packrate=phrase4;
+          
             console.log(packid,packduration,packfacility,packrate);
             var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td><button onclick="confirm(\'' +packid+ '\',\'' +packduration+ ' \',\''+packfacility+'\',\''+packrate+ '\')">BookNow</button></td></tr>';
+            var obj = {
+                "packid": packid,
+                "packduration": packduration,
+                "packfacility": packfacility,
+                "packrate": packrate
+            }
+            console.log(obj);
+            var usersTemp=JSON.parse(localStorage.getItem("BOOKINGS"));
+        var users=usersTemp ? usersTemp:[];
+        users.push(obj);
+        localStorage.setItem("BOOKINGS",JSON.stringify(users));
             $("table tbody").append(new_pack);
             }
         
@@ -105,7 +117,7 @@
         var bookingserviceObj= new BookingService();
       let result= bookingserviceObj.confirm(userObj);
       if(result=="success"){
-        console.log(id,duration,facilities,price,dataStart);
+        console.log(id,duration,facilities,price,dataStart); 
         var index= document.getElementById("planner_table1").rows.item(1).innerHTML;
         console.log(index);
         window.location.href="booking.html?id="+id+"%20duration="+duration+"facilities="+facilities+"%20price="+price+"%20name="+name+"%20dataStart="+startdate+"%20dateEnd="+enddate;

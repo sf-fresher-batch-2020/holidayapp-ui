@@ -91,7 +91,7 @@
             
      var packobj={ "packid":packid,"duration":duration, "rating":rating, "price":price, "facilities":facilities};
      console.log(packobj);
-      var addpackageservice= new AddpackageService();
+      var addpackageservice= new AddpackageService();//senddata to ls
       let result= addpackageservice.addpackage(packobj);
       if (result=="success"){
        alert("Package added and Updated");

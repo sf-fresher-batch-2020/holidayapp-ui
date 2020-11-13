@@ -30,22 +30,36 @@
                       
                         <tr class="bg-info">
                           <th>Package Id</th>
-                          <th >Duration</th>
+                          <th >Duration(in weeks)</th>
                          <th >Facilities</th>
                           <th >Price</th>
                           <th >Start Date</th>
                           <th >End Date</th>
                           <th>Cancel Package</th>
                           </tr>
-                      
-                    </tbody>
+                           </tbody>
                   </table>
             </div><br><br>
-                 
+            <button onclick="addField(this)">ADD BOOKING</button>
         </div>
+        <h3>PREVIOUS BOOKINGS</h3>
+        <div class="container">
+            <div class="row" id="cardcontain">
+            <div class="col-md-4 card text-white bg-dark mb-3" style="max-width: 18rem;" >
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text"></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            </div>
+        
     </div>
     <script>
          window.onload = function () {
+             var new_pack="";
       let urlString = window.location.search.substring(1);
           
             let paramString = urlString.split('%20')[0]; 
@@ -70,10 +84,13 @@
             let phrase7=paramString7.split("=")[1];
             let enddate=phrase7;
             document.getElementById("result").innerHTML="Welcome "+""+CustomerName+", Here Are Your Bookings";
-          
+            
+
             console.log(packid,packduration,packfacility,packrate,CustomerName,Startdate,enddate);
-            var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td>'+Startdate+'</td><td>'+enddate+'</td><td><button onclick="cancelrecord()">cancel</button></td></tr>';
-            $("table tbody").append(new_pack);
+             new_pack += '<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td>'+Startdate+'</td><td>'+enddate+'</td><td><button onclick="cancelrecord()">cancel</button></td></tr>';
+                        
+            $(new_pack).appendTo("table tbody");
+            
             }
             //cancel record
             function cancelrecord() { 
@@ -81,8 +98,35 @@
             $("#planner_table1").text
                 ("Your Booking is Cancelled"); 
         } 
-      
+
+        function displaypackage(){
+        let listTemp=JSON.parse(localStorage.getItem("BOOKINGS"));
+        let bookingsdata=listTemp ? listTemp:[];
+        console.log(bookingsdata);
+        let sno=0;
+        let bookdata="";
+        if(bookingsdata.length>0){
+        for(let obj of bookingsdata){
+       bookdata+=`
+       <div class="col-md-4 card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Package ID: ${obj.packid}</div>
+                <div class="card-body">
+                  <h5 class="card-title">duration(in weeks): ${obj.packduration}</h5>
+                  <p class="card-text">Facilities: ${obj.packfacility}</p>
+                  <p class="card-text">Pricing: ${obj.packrate}</p>
+                </div>
+              </div>
+        `;
+      }}
+      console.log(bookdata);
+      document.querySelector("#cardcontain").innerHTML = bookdata;
+    }
         $("#head").load("_header.html");
+        function addField(n)
+{
+    window.location.href="destination.html";
+   
+} displaypackage();
     </script>
 </body>
 </html>
