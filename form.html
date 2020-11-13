@@ -33,10 +33,10 @@
             <h1>confirm Form</h1>
             <form>
             <form action="" method="POST">
-                <label>NAME</label><input type="text" name="username" id="username" placeholder="Enter username" required autofocus><br>
-                <label>EMAIL-ID</label><input type="email" name="email" id="email" placeholder="Enter user email" required ><br>
-                
-                    Date of Journey: <input type="date" style="width: 200px;" class="datepicker" id="dataStart" size="20" name="dataStart" />
+                <label style="color:ghostwhite">NAME</label><input type="text" name="username" id="CustomerName" placeholder="Enter username" required autofocus><br>
+                <label style="color:ghostwhite">EMAIL-ID</label><input type="email" name="email" id="email" placeholder="Enter user email" required ><br>
+                <label style="color:ghostwhite">CURRENT DATE: <input type="date"class="datepicker" name="todayReg" required id="today" value=""></label>
+                <label style="color:ghostwhite">Date of Journey: <input type="date" style="width: 200px;" class="datepicker" id="Startdate" size="20" name="dataStart" /></label>
                      
             </form>
             </form>
@@ -67,7 +67,7 @@
     </div>
 </main>
     <script>
-     window.onload = function () {
+     
       let urlString = window.location.search.substring(1);
           
             let paramString = urlString.split('%20')[0]; 
@@ -82,47 +82,55 @@
             let paramString4=urlString.split('%20')[3];
             let phrase4=paramString4.split("=")[1];
             let packrate=phrase4;
-          
+            
             console.log(packid,packduration,packfacility,packrate);
             var new_pack='<tr><td>' +packid+ '</td><td>'+packduration+'</td><td>'+packfacility+'</td><td>'+packrate+'</td><td><button onclick="confirm(\'' +packid+ '\',\'' +packduration+ ' \',\''+packfacility+'\',\''+packrate+ '\')">BookNow</button></td></tr>';
-            var obj = {
-                "packid": packid,
-                "packduration": packduration,
-                "packfacility": packfacility,
-                "packrate": packrate
-            }
-            console.log(obj);
-            var usersTemp=JSON.parse(localStorage.getItem("BOOKINGS"));
-        var users=usersTemp ? usersTemp:[];
-        users.push(obj);
-        localStorage.setItem("BOOKINGS",JSON.stringify(users));
+            
             $("table tbody").append(new_pack);
-            }
+            
         
             
         function confirm(id,duration,facilities,price,dataStart){
           event.preventDefault();
           var n;
             var email=document.getElementById("email").value;
-            var name=document.getElementById("username").value;
-            var startdate=document.getElementById("dataStart").value;
-            var someDate = new Date(startdate);
-            someDate.setDate(someDate.getDate() + (duration*7));
-            var enddate = someDate.toISOString().substr(0,10);
-            console.log(enddate);
+            var CustomerName=document.getElementById("CustomerName").value;
+            var Startdate=document.getElementById("Startdate").value;
+            var enddate = new Date(Startdate);
+            enddate.setDate(enddate.getDate() + (duration*7));
+            var enddate = enddate.toISOString().substr(0,10);
+            
+            var today = new Date().toISOString().slice(0, 10);
+                console.log(today);
+
+            var obj = {
+                "CustomerName": CustomerName,
+                "packid": packid,
+                "packduration": packduration,
+                "packfacility": packfacility,
+                "packrate": packrate,
+                "Startdate": Startdate,
+                "enddate": enddate,
+                "today": today
+            }
+            console.log(obj);
+            var usersTemp=JSON.parse(localStorage.getItem("BOOKINGS"));
+        var users=usersTemp ? usersTemp:[];
+        users.push(obj);
+        localStorage.setItem("BOOKINGS",JSON.stringify(users));
             
 
-          var userObj={"email":email,"username":name ,"dataStart":startdate,"dataEnd":enddate};
+          var userObj={"email":email,"CustomerName":CustomerName,"today":today};
         console.log(userObj);
         var bookingserviceObj= new BookingService();
       let result= bookingserviceObj.confirm(userObj);
       if(result=="success"){
-        console.log(id,duration,facilities,price,dataStart); 
+        console.log(id,duration,facilities,price); 
         var index= document.getElementById("planner_table1").rows.item(1).innerHTML;
         console.log(index);
-        window.location.href="booking.html?id="+id+"%20duration="+duration+"facilities="+facilities+"%20price="+price+"%20name="+name+"%20dataStart="+startdate+"%20dateEnd="+enddate;
+        window.location.href="booking.html?id="+id+"%20duration="+duration+"facilities="+facilities+"%20price="+price+"%20CustomerName="+CustomerName+"%20Startdate="+Startdate+"%20enddate="+enddate;
 
-            alert("Success!!your trip is confirmed from " +startdate+" to "+enddate);
+            alert("Success!!your trip is confirmed from " +Startdate+" to "+enddate);
             
         }
         else{
