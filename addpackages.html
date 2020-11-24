@@ -28,12 +28,12 @@
       <h1>ADD PACKAGE</h1>
         </div>
         <div class="card-body">
-      <form action="" method="POST">
-        <label>ID :</label><input type="text" name="id" id="packid"  required ><br>
-    <label>Duration :</label><input type="number" name="duration" id="duration" required><br>
-    <label>Rating :</label><input type="number" name="rate" id="rate"  required ><br>
-    <label>Price :</label><input type="number" name="price" id="price" required><br>
-    <label>Facilities</label><select id="category" name="facility">
+      <form action="" method="POST" name="theform">
+        <label>ID :</label><input type="text" name="id" id="packid"  required onkeyup="manage()" ><br>
+    <label>Duration :</label><input type="number" name="duration" id="duration" required onkeyup="manage()"><br>
+    <label>Rating :</label><input type="number" name="rate" id="rate"  required onkeyup="manage()" ><br>
+    <label>Price :</label><input type="number" name="price" id="price" required onkeyup="manage()"><br>
+    <label>Facilities</label><select id="category" name="facility" required onkeyup="manage()">
         <option value="">--PLEASE SELECT --</option>
                     <option value="gym">Gym</option>
                     <option value="pool">Pool</option>
@@ -43,7 +43,7 @@
     </select>
     
        <br>
-        <button class="btn btn-primary" onclick="addpackage()">Add Package</button><br><br>
+        <button class="btn btn-primary" type="submit" id="add_pack" onclick="addpackage()"  >Add Package</button><br><br>
         <input class="btn btn-primary" type="reset" value="Reset"><br><br>
         <button class="btn btn-primary" onclick="updaterow(document.getElementById('packid').value,document.getElementById('duration').value,document.getElementById('rate').value,document.getElementById('price').value,document.getElementById('category').value);">Update </button>
       
@@ -152,6 +152,8 @@ var new_pack="<tr><td>" +obj.packid+ "</td><td>" + obj.duration + "</td><td>" + 
                   deleteRecord(id);
                   addpackage();
               }
+              
+
 
      
       
