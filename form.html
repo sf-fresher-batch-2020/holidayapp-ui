@@ -98,7 +98,6 @@
             var enddate = new Date(Startdate);
             enddate.setDate(enddate.getDate() + (duration*7));
             var enddate = enddate.toISOString().substr(0,10);
-            
             var today = new Date().toISOString().slice(0, 10);
                 console.log(today);
 
@@ -117,9 +116,7 @@
         var users=usersTemp ? usersTemp:[];
         users.push(obj);
         localStorage.setItem("BOOKINGS",JSON.stringify(users));
-            
-
-          var userObj={"email":email,"CustomerName":CustomerName,"today":today};
+        var userObj={"email":email,"CustomerName":CustomerName,"today":today};
         console.log(userObj);
         var bookingserviceObj= new BookingService();
       let result= bookingserviceObj.confirm(userObj);
